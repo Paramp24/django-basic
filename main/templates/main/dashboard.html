@@ -1,0 +1,48 @@
+<!-- main/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <div>
+
+{% block content %}
+<h2>Search Bar</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+{% endblock %}
+
+<h1>service posting</h1>
+
+        {% for service_posting in service_postings %}
+            <div>
+                <!-- Display service posting details here -->
+                <p>{{ service_posting.title }}</p>
+                <p>{{ service_posting.services_needed }}</p>
+                <p>{{ service_posting.location }}</p>
+                <!-- Add more fields as needed -->
+            </div>
+        {% endfor %}
+
+        <!-- Do the same for business Posting -->
+
+<h1>Business Posting</h1>
+        
+        {% for business_posting in business_postings %}
+        <div>
+            <!-- Display service posting details here -->
+            <p>{{ business_posting.name }}</p>
+            <p>{{ business_posting.industry }}</p>
+            <p>{{ business_posting.estimated_pricing }}</p>
+            <!-- Add more fields as needed -->
+        </div>
+    {% endfor %}
+
+    </div>
+</body>
+</html>

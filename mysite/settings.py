@@ -11,20 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+STATIC_URL = 'static'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main/static')]
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ljv(w9ea3ani!f+v#+a53b4x4cvsrk(&$oc0^zs%*lo)p+&^go'
+SECRET_KEY = 'django-insecure-%!*k&17&_+6f8shly&bfi48*jp$tcgjl$5sm2$(_g(^)iumm9x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['.vercel.app']
 
 
@@ -32,12 +36,12 @@ ALLOWED_HOSTS = ['.vercel.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'main.apps.MainConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
-
+#CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

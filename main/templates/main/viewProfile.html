@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profile</title>
+</head>
+<body>
+    <h1>View Profile</h1>
+    <br>
+    <br>
+
+    {% if profile %}
+      {% if profile_type == 'user' %}
+        <h2>User Profile: {{ profile.username }}</h2>
+        <p>Email: {{ profile.email }}</p>
+        <!-- Add more user-specific details here -->
+      {% elif profile_type == 'business' %}
+        <h2>Business Profile: {{ profile.name }}</h2>
+        <p>Business Owner: {{ profile.user.username }}</p>
+        <!-- Add more business-specific details here -->
+      {% endif %}
+
+      <hr>
+      <h1>Reviews</h1>
+      {% if reviews %}
+        <ul>
+          {% for review in reviews %}
+            <li>
+              {% if review.business_profile %}
+                <strong>Company:</strong> {{ review.business_profile.name }}<br>
+              {% endif %}
+              <strong>User:</strong> {{ review.user.username }}<br>
+              <strong>Rating:</strong> {{ review.rating }}<br>
+              <strong>Comment:</strong> {{ review.comment }}<br>
+              <strong>Created At:</strong> {{ review.created_at }}
+            </li>
+            <br>
+          {% empty %}
+            <li>No reviews found.</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No reviews available.</p>
+      {% endif %}
+    {% else %}
+      <p>Profile not found.</p>
+    {% endif %}
+</body>
+</html>

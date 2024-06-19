@@ -1,0 +1,10 @@
+
+
+{% block content %}
+<h2>Company Form</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Make Business Profile</button>
+</form>
+{% endblock %}
